@@ -1,0 +1,91 @@
+{
+  "consumer": {
+    "name": "billy"
+  },
+  "provider": {
+    "name": "bobby"
+  },
+  "interactions": [
+    {
+      "description": "Some name for the test",
+      "provider_state": "Some state",
+      "request": {
+        "method": "GET",
+        "path": "/foobar"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "description": "Some name for the test",
+      "provider_state": "Some state2",
+      "request": {
+        "method": "GET",
+        "path": "/bazbat"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          [
+            {
+              "colour": "red",
+              "size": 10,
+              "tag": [
+                [
+                  "jumper",
+                  "shirt"
+                ],
+                [
+                  "jumper",
+                  "shirt"
+                ]
+              ]
+            }
+          ]
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 1
+          },
+          "$.body[*].*": {
+            "match": "type"
+          },
+          "$.body[*]": {
+            "min": 1
+          },
+          "$.body[*][*].*": {
+            "match": "type"
+          },
+          "$.body[*][*].colour": {
+            "match": "regex",
+            "regex": "red|green|blue"
+          },
+          "$.body[*][*].size": {
+            "match": "type"
+          },
+          "$.body[*][*].tag": {
+            "min": 2
+          },
+          "$.body[*][*].tag[*].*": {
+            "match": "type"
+          },
+          "$.body[*][*].tag[*][0]": {
+            "match": "type"
+          },
+          "$.body[*][*].tag[*][1]": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}
