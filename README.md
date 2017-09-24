@@ -22,3 +22,4 @@ docker run -t -p 8080:8080 -v "$(pwd)/pacts/:/app/pacts" pactfoundation/pact-stu
 curl -v $(docker-machine ip $(docker-machine active)):8080/bazbat
 curl -v $(docker-machine ip $(docker-machine active)):8080/foobar
 ```
+
