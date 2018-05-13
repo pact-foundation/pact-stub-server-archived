@@ -1,11 +1,12 @@
 FROM debian
-RUN apt-get update && apt-get install -y curl wget gzip
-RUN curl -L -o pact-stub-server.gz $(curl -s https://api.github.com/repos/uglyog/pact-stub-server/releases | grep browser_download_url | head -n 1 | cut -d '"' -f 4) && \
-    mkdir /app && \
-    gunzip *.gz && \
-    chmod +x pact* && \
-    mv pact* /app/pact-stub-server
-
+RUN apt-get update && apt-get install -y curl gzip
+ENV VERSION 0.0.8
+RUN mkdir /app && \
+    curl -L -o /app/pact-stub-server.gz https://github.com/uglyog/pact-stub-server/releases/download/v$VERSION/pact-stub-server-linux-x86_64-$VERSION.gz && \
+    gunzip /app/pact-stub-server.gz && \
+    chmod +x /app/pact-stub-server
+RUN apt-get remove -y curl && apt-get -y autoremove && apt-get clean
 WORKDIR /app
 ENTRYPOINT ["/app/pact-stub-server"]
+EXPOSE 8080
 CMD ["--help"]
