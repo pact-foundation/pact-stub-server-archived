@@ -1,6 +1,6 @@
 FROM debian
 RUN apt-get update && apt-get install -y curl gzip
-ENV VERSION 0.0.9
+ENV VERSION 0.0.10
 RUN mkdir /app && \
     curl -L -o /app/pact-stub-server.gz https://github.com/uglyog/pact-stub-server/releases/download/v$VERSION/pact-stub-server-linux-x86_64-$VERSION.gz && \
     gunzip /app/pact-stub-server.gz && \
