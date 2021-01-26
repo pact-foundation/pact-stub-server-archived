@@ -1,6 +1,6 @@
 # Pact Stub Server - Archived
 
-This has been merged into the repo with all the stub server code.
+**This has been merged into the repo with all the stub server code.**
 
 Run a Stub Server from one or more local or remote Pact files.
 
